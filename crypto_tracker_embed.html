@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyCoin Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📈 MyCoin Tracker</h1>
+  <h2 id="latest-value"></h2>
+  <canvas id="valueChart" width="400" height="200"></canvas>
+
+  <script>
+    // === Editable Weekly Values ===
+    const weeklyData = [
+      { week: "Week 1", value: 1.00 },
+      { week: "Week 2", value: 1.25 },
+      { week: "Week 3", value: 1.15 },
+      { week: "Week 4", value: 1.50 } // Add more as needed
+    ];
+
+    // === Display Current Value ===
+    const latest = weeklyData[weeklyData.length - 1];
+    document.getElementById("latest-value").textContent = `Current Value: $${latest.value.toFixed(2)}`;
+
+    // === Draw Chart ===
+    const ctx = document.getElementById('valueChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: weeklyData.map(d => d.week),
+        datasets: [{
+          label: 'MyCoin Value ($)',
+          data: weeklyData.map(d => d.value),
+          borderColor: 'blue',
+          backgroundColor: 'lightblue',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
