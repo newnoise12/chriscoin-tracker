@@ -19,7 +19,7 @@
   </style>
 </head>
 <body>
-  <h1>📈 MyCoin Tracker</h1>
+  <h1>📈 MyC$ Tracker</h1>
   <h2 id="latest-value"></h2>
   <canvas id="valueChart" width="400" height="200"></canvas>
 
@@ -34,7 +34,7 @@
 
     // === Display Current Value ===
     const latest = weeklyData[weeklyData.length - 1];
-    document.getElementById("latest-value").textContent = `Current Value: $${latest.value.toFixed(2)}`;
+    document.getElementById("latest-value").textContent = `Current Value: ${latest.value.toFixed(2)} LSB$`;
 
     // === Draw Chart ===
     const ctx = document.getElementById('valueChart').getContext('2d');
